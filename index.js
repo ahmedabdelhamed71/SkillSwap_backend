@@ -17,11 +17,6 @@ mongoose
   console.log("DB Not Connected")
   process.exit(1)
 })
-app.use("/", (req, res)=>{
-  res.status(200).json ({
-    msg: "SkillSwap",
-  })
-})
 
 app.get("/", (req, res)=>{
   res.status(200).json ({
