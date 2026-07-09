@@ -6,6 +6,7 @@ const testRoutes = require("./routes/testRoutes");
 require('dotenv').config()
 app.use(express.json());
 app.use("/api/skills", skillRoutes);
+app.use("/api/questions", testRoutes);
 app.use("/api/tests", testRoutes);
 
 const port = process.env.PORT || 3000;
