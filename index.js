@@ -6,7 +6,8 @@ const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/authRoutes");
 
 const skillRoutes = require("./routes/skillRoutes");
-const testRoutes = require("./routes/testRoutes");
+const testRoutes = require("./routes/testRoutes"); 
+const resultRoutes = require("./routes/resultRoutes");
 
 const app = express();
 
@@ -23,7 +24,9 @@ app.use(
 app.use("/api/auth", authRoutes);
 
 app.use("/api/skills", skillRoutes);
-app.use("/api/tests", testRoutes);
+app.use("/api/questions", testRoutes);
+app.use("/api/tests", testRoutes); 
+app.use("/api/results", resultRoutes);
 
 const port = process.env.PORT;
 const DB_URL = process.env.DB_URL;
