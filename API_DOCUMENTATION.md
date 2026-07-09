@@ -57,3 +57,27 @@ GET    /api/users?page=1&limit=10&search=john
 
 GET    /api/users/:id
 - Get user by id (auth required)
+
+==========================
+REQUESTS (Swap Requests)
+==========================
+All endpoints require authentication.
+
+POST   /api/requests
+- Create a swap request
+- Body: { receiver, skill, message? }
+
+GET    /api/requests/incoming
+- Requests received by the authenticated user
+
+GET    /api/requests/outgoing
+- Requests sent by the authenticated user
+
+GET    /api/requests/:id
+- Get a single request (sender or receiver only)
+
+PATCH  /api/requests/:id/accept
+- Accept a pending request (receiver only)
+
+PATCH  /api/requests/:id/reject
+- Reject a pending request (receiver only)

@@ -7,7 +7,7 @@ const protect = require("../middlewares/authMiddleware");
 const {
   submitResult,
   getMyResults,
-} = require("../controllers/resultController");
+} = require("../controllers/resultcontroller");
 
 router.post("/", protect, submitResult);
 

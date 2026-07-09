@@ -7,7 +7,7 @@ const {
   updateSkill,
   deleteSkill,
   searchSkills,
-} = require("../controllers/skillController");
+} = require("../controllers/skillcontroller");
 
 
 router.get("/", getSkills);

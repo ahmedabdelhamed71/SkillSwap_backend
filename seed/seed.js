@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const Skill = require("../models/Skill");
+const Skill = require("../models/skill");
 const Question = require("../models/Question");
 
 const skills = require("./skills");
