@@ -47,3 +47,13 @@ POST   /api/results
 
 GET    /api/results/:userId
 - Get user results
+==========================
+USERS
+==========================
+
+GET    /api/users?page=1&limit=10&search=john
+- Get paginated list of users (auth required)
+- Query params: page (default 1), limit (default 10, max 100), search (matches username, full_name, email)
+
+GET    /api/users/:id
+- Get user by id (auth required)

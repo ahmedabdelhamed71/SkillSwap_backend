@@ -1,40 +1,37 @@
-<<<<<<< HEAD
 const express = require('express');
-=======
-const express = require("express");
-const mongoose = require("mongoose");
-require("dotenv").config();
-const cors = require("cors");
-const cookieParser = require("cookie-parser");
-const authRoutes = require("./routes/authRoutes");
-
-const skillRoutes = require("./routes/skillRoutes");
-const testRoutes = require("./routes/testRoutes");
-
->>>>>>> 0b35c47 (Add authentication API with JWT cookies)
-const app = express();
 const mongoose = require('mongoose');
+require('dotenv').config();
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const authRoutes = require('./routes/authRoutes');
 const skillRoutes = require('./routes/skillRoutes');
 const testRoutes = require('./routes/testRoutes');
-require('dotenv').config();
+const app = express();
+
+const userRoutes = require('./routes/userRoutes');
+const skillRoutes = require('./routes/skillRoutes');
+const testRoutes = require('./routes/testRoutes');
 
 app.use(express.json());
-<<<<<<< HEAD
 app.use('/api/skills', skillRoutes);
 app.use('/api/questions', testRoutes);
 app.use('/api/tests', testRoutes);
-=======
 app.use(cookieParser());
 
 app.use(
   cors({
     origin: process.env.CLIENT_URL,
     credentials: true,
-  })
+  }),
 );
 
-app.use("/api/auth", authRoutes);
->>>>>>> 0b35c47 (Add authentication API with JWT cookies)
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+
+app.use('/api/skills', skillRoutes);
+app.use('/api/questions', testRoutes);
+app.use('/api/tests', testRoutes);
+app.use('/api/results', resultRoutes);
 
 const port = process.env.PORT || 3000;
 const DB_URL = process.env.DB_URL;
