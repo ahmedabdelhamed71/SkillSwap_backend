@@ -27,6 +27,7 @@ Backend Tasks:
   - Get Freelancer Profile
   - Get All Requests
   - Get Request Details
+  - Accept/Reject Request
 
 ========================================
 Team Member 3
