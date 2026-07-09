@@ -12,16 +12,18 @@ const port = process.env.PORT;
 const DB_URL = process.env.DB_URL;
 
 
+async function connectDB() {
+  try {
+    await mongoose.connect(DB_URL);
+    console.log('DB Connected');
+    return mongoose;
+  } catch (error) {
+    console.error('DB Not Connected', error);
+    process.exit(1);
+  }
+}
 
-mongoose
-.connect(DB_URL)
-.then(()=>{
-  console.log("DB Connected")
-})
-.catch((err)=>{
-  console.error("DB Not Connected", err)
-  process.exit(1)
-})
+connectDB();
 
 app.get("/", (req, res)=>{
   res.status(200).json ({
