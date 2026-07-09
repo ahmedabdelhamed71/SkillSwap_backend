@@ -47,6 +47,7 @@ POST   /api/results
 
 GET    /api/results/:userId
 - Get user results
+
 ==========================
 USERS
 ==========================

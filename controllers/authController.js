@@ -2,6 +2,14 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
+// Generate JWT Token
+const generateToken = (userId) => {
+  return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN || "7d",
+  });
+};
+
+// POST /api/auth/register
 const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -24,11 +32,7 @@ const register = async (req, res) => {
       password: hashedPassword,
     });
 
-    const token = jwt.sign(
-      { id: user._id },
-      process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES_IN || "7d" }
-    );
+    const token = generateToken(user._id);
 
     res.cookie("token", token, {
       httpOnly: true,
@@ -39,6 +43,7 @@ const register = async (req, res) => {
 
     res.status(201).json({
       msg: "User registered successfully",
+      token,
       user: {
         id: user._id,
         username: user.username,
@@ -51,6 +56,7 @@ const register = async (req, res) => {
   }
 };
 
+// POST /api/auth/login
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -71,11 +77,7 @@ const login = async (req, res) => {
       return res.status(400).json({ msg: "Invalid email or password" });
     }
 
-    const token = jwt.sign(
-      { id: user._id },
-      process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES_IN || "7d" }
-    );
+    const token = generateToken(user._id);
 
     res.cookie("token", token, {
       httpOnly: true,
@@ -86,6 +88,7 @@ const login = async (req, res) => {
 
     res.status(200).json({
       msg: "User logged in successfully",
+      token,
       user: {
         id: user._id,
         username: user.username,
@@ -98,16 +101,19 @@ const login = async (req, res) => {
   }
 };
 
+// GET /api/auth/me (Protected)
 const getMe = async (req, res) => {
   res.status(200).json({
     user: req.user,
   });
 };
+
+// POST /api/auth/logout
 const logout = (req, res) => {
   res.clearCookie("token");
-
   res.status(200).json({
     msg: "Logged out successfully",
   });
 };
-module.exports = {register,login, getMe,logout,};
+
+module.exports = { register, login, getMe, logout };

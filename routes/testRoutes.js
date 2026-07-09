@@ -8,7 +8,6 @@ const {
   deleteQuestion,
 } = require("../controllers/testcontroller");
 
-
 router.get("/:skillId", getQuestionsBySkill);
 
 router.post("/", addQuestion);
