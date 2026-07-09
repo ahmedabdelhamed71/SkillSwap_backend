@@ -11,18 +11,24 @@ const questionSchema = new mongoose.Schema(
     question: {
       type: String,
       required: true,
+      trim: true,
     },
 
-    options: [
-      {
-        type: String,
-        required: true,
+    options: {
+      type: [String],
+      required: true,
+      validate: {
+        validator: function (value) {
+          return value.length === 4;
+        },
+        message: "Question must have exactly 4 options.",
       },
-    ],
+    },
 
     correctAnswer: {
       type: String,
       required: true,
+      trim: true,
     },
   },
   {
