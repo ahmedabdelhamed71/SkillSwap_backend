@@ -1,4 +1,4 @@
-const Skill = require("../models/Skill");
+const Skill = require("../models/skill");
 
 // Get all skills
 const getSkills = async (req, res) => {

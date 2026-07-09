@@ -6,7 +6,7 @@ const {
   getQuestionsBySkill,
   updateQuestion,
   deleteQuestion,
-} = require("../controllers/testController");
+} = require("../controllers/testcontroller");
 
 
 router.get("/:skillId", getQuestionsBySkill);
