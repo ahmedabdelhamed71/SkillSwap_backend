@@ -8,7 +8,7 @@ app.use(express.json());
 app.use("/api/skills", skillRoutes);
 app.use("/api/tests", testRoutes);
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 const DB_URL = process.env.DB_URL;
 
 
