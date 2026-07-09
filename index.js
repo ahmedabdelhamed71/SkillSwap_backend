@@ -1,9 +1,16 @@
 const express = require("express");
-const app = express();
 const mongoose = require("mongoose");
 require("dotenv").config();
 
+const skillRoutes = require("./routes/skillRoutes");
+const testRoutes = require("./routes/testRoutes");
+
+const app = express();
+
 app.use(express.json());
+
+app.use("/api/skills", skillRoutes);
+app.use("/api/tests", testRoutes);
 
 const port = process.env.PORT;
 const DB_URL = process.env.DB_URL;
@@ -14,7 +21,7 @@ mongoose
     console.log("DB Connected");
 
     app.listen(port, () => {
-      console.log(`Server running on port ${port}`);
+      console.log(`Server is running on port ${port}`);
     });
   })
   .catch((error) => {
