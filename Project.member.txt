@@ -15,16 +15,18 @@ Backend Tasks:
 ========================================
 Team Member 2
 ========================================
-Name:Aya saber
+Name: Aya saber Fawzy
 Frontend Tasks:
--Home
--contact
--about
--Dark light mode
+  - Home
+  - Contact
+  - About
+  - Dark/Light mode
 Backend Tasks:
--
--
--
+  - Get Paginated List of Freelancers
+  - Search Freelancers
+  - Get Freelancer Profile
+  - Get All Requests
+  - Get Request Details
 
 ========================================
 Team Member 3
