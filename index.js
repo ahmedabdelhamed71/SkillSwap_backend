@@ -1,6 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const authRoutes = require("./routes/authRoutes");
 
 const skillRoutes = require("./routes/skillRoutes");
 const testRoutes = require("./routes/testRoutes");
@@ -8,6 +11,16 @@ const testRoutes = require("./routes/testRoutes");
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
+
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  })
+);
+
+app.use("/api/auth", authRoutes);
 
 app.use("/api/skills", skillRoutes);
 app.use("/api/tests", testRoutes);
