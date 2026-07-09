@@ -1,5 +1,5 @@
 const Question = require("../models/Question");
-const Result = require("../models/Result");
+const Result = require("../models/result");
 
 const submitResult = async (req, res) => {
   try {

@@ -7,6 +7,8 @@ const cookieParser = require('cookie-parser');
 // Import routes
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
+const requestRoutes = require('./routes/requestRoutes');
+const contactRoutes = require('./routes/contactRoutes');
 const skillRoutes = require('./routes/skillRoutes');
 const testRoutes = require('./routes/testRoutes');
 const resultRoutes = require('./routes/resultRoutes');
@@ -28,6 +30,8 @@ app.use(
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/requests', requestRoutes);
+app.use('/api/contact', contactRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/conversations', messageRoutes);
 app.use('/api/skills', skillRoutes);
@@ -43,6 +47,7 @@ async function connectDB() {
   try {
     await mongoose.connect(DB_URL);
     console.log('DB Connected');
+    return mongoose;
   } catch (error) {
     console.error('DB Not Connected', error);
     process.exit(1);
@@ -61,5 +66,3 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
-module.exports = app;

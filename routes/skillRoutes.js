@@ -7,20 +7,15 @@ const {
   updateSkill,
   deleteSkill,
   searchSkills,
-} = require("../controllers/skillController");
-
+} = require("../controllers/skillcontroller");
 
 router.get("/", getSkills);
 
-
 router.get("/search", searchSkills);
-
 
 router.post("/", addSkill);
 
-
 router.put("/:id", updateSkill);
-
 
 router.delete("/:id", deleteSkill);
 
