@@ -10,6 +10,7 @@ const app = express();
 
 const userRoutes = require('./routes/userRoutes');
 const requestRoutes = require('./routes/requestRoutes');
+const contactRoutes = require('./routes/contactRoutes');
 const skillRoutes = require('./routes/skillRoutes');
 const testRoutes = require('./routes/testRoutes');
 
@@ -29,6 +30,7 @@ app.use(
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/requests', requestRoutes);
+app.use('/api/contact', contactRoutes);
 
 app.use('/api/skills', skillRoutes);
 app.use('/api/questions', testRoutes);

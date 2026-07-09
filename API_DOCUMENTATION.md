@@ -81,3 +81,11 @@ PATCH  /api/requests/:id/accept
 
 PATCH  /api/requests/:id/reject
 - Reject a pending request (receiver only)
+
+==========================
+CONTACT
+==========================
+
+POST   /api/contact
+- Submit a contact message (public)
+- Body: { full_name, email, subject, message }
