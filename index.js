@@ -1,16 +1,16 @@
-const express = require('express');
-const mongoose = require('mongoose');
-require('dotenv').config();
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const authRoutes = require('./routes/authRoutes');
+const express = require("express");
+const mongoose = require("mongoose");
+require("dotenv").config();
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const authRoutes = require("./routes/authRoutes");
 
-const userRoutes = require('./routes/userRoutes');
-const requestRoutes = require('./routes/requestRoutes');
-const contactRoutes = require('./routes/contactRoutes');
-const skillRoutes = require('./routes/skillRoutes');
-const testRoutes = require('./routes/testRoutes');
-const resultRoutes = require('./routes/resultRoutes');
+// const userRoutes = require("./routes/userRoutes");
+const requestRoutes = require("./routes/requestRoutes");
+const contactRoutes = require("./routes/contactRoutes");
+const skillRoutes = require("./routes/skillRoutes");
+const testRoutes = require("./routes/testRoutes");
+const resultRoutes = require("./routes/resultRoutes");
 
 const app = express();
 
@@ -24,15 +24,17 @@ app.use(
   }),
 );
 
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/requests', requestRoutes);
-app.use('/api/contact', contactRoutes);
+console.log("hesham test case");
 
-app.use('/api/skills', skillRoutes);
-app.use('/api/questions', testRoutes);
-app.use('/api/tests', testRoutes);
-app.use('/api/results', resultRoutes);
+app.use("/api/auth", authRoutes);
+// app.use("/api/users", userRoutes);
+app.use("/api/requests", requestRoutes);
+app.use("/api/contact", contactRoutes);
+
+app.use("/api/skills", skillRoutes);
+app.use("/api/questions", testRoutes);
+app.use("/api/tests", testRoutes);
+app.use("/api/results", resultRoutes);
 
 const port = process.env.PORT || 3000;
 const DB_URL = process.env.DB_URL;
@@ -40,10 +42,10 @@ const DB_URL = process.env.DB_URL;
 async function connectDB() {
   try {
     await mongoose.connect(DB_URL);
-    console.log('DB Connected');
+    console.log("DB Connected");
     return mongoose;
   } catch (error) {
-    console.error('DB Not Connected', error);
+    console.error("DB Not Connected");
     process.exit(1);
   }
 }
@@ -54,8 +56,8 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).json({
-    msg: 'SkillSwap',
+    msg: "SkillSwap",
   });
 });
