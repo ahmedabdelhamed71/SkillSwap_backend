@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 const Question = require("../models/Question");
 
 
+
+
+
 const addQuestion = async (req, res) => {
   try {
     const question = await Question.create(req.body);
@@ -18,12 +21,17 @@ const addQuestion = async (req, res) => {
 };
 
 
+
+
+
 const getQuestionsBySkill = async (req, res) => {
   try {
     const questions = await Question.aggregate([
       {
         $match: {
-        skill: new mongoose.Types.ObjectId(req.params.skillId),
+
+          skill: new mongoose.Types.ObjectId(req.params.skillId),
+
         },
       },
       {
@@ -49,11 +57,13 @@ const getQuestionsBySkill = async (req, res) => {
 
 const updateQuestion = async (req, res) => {
   try {
+
     const question = await Question.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
     );
+
 
     if (!question) {
       return res.status(404).json({
@@ -71,6 +81,9 @@ const updateQuestion = async (req, res) => {
     });
   }
 };
+
+
+
 
 
 const deleteQuestion = async (req, res) => {
@@ -94,7 +107,9 @@ const deleteQuestion = async (req, res) => {
 };
 module.exports = {
   addQuestion,
-  getQuestionsBySkill, 
+
+  getQuestionsBySkill,
   updateQuestion,
   deleteQuestion,
-}; 
+};
+

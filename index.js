@@ -14,7 +14,6 @@ const resultRoutes = require("./routes/resultRoutes");
 
 const app = express();
 
-// Middlewares
 app.use(
   cors({
     origin: process.env.CLIENT_URL,
@@ -25,7 +24,6 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/requests", requestRoutes);
@@ -35,14 +33,12 @@ app.use("/api/questions", testRoutes);
 app.use("/api/tests", testRoutes);
 app.use("/api/results", resultRoutes);
 
-// Home Route
 app.get("/", (req, res) => {
   res.status(200).json({
     msg: "SkillSwap",
   });
 });
 
-// Database
 const PORT = process.env.PORT || 3000;
 const DB_URL = process.env.DB_URL;
 

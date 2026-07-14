@@ -24,11 +24,15 @@ const register = async (req, res) => {
       password: hashedPassword,
     });
 
+
+   
+
     const token = jwt.sign(
       { id: user._id },
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRES_IN || "7d" }
     );
+
 
     res.cookie("token", token, {
       httpOnly: true,
@@ -71,11 +75,13 @@ const login = async (req, res) => {
       return res.status(400).json({ msg: "Invalid email or password" });
     }
 
+
     const token = jwt.sign(
       { id: user._id },
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRES_IN || "7d" }
     );
+
 
     res.cookie("token", token, {
       httpOnly: true,
@@ -110,4 +116,8 @@ const logout = (req, res) => {
     msg: "Logged out successfully",
   });
 };
+
+
+
 module.exports = {register,login, getMe,logout,};
+
