@@ -47,3 +47,45 @@ POST   /api/results
 
 GET    /api/results/:userId
 - Get user results
+==========================
+USERS
+==========================
+
+GET    /api/users?page=1&limit=10&search=john
+- Get paginated list of users (auth required)
+- Query params: page (default 1), limit (default 10, max 100), search (matches username, full_name, email)
+
+GET    /api/users/:id
+- Get user by id (auth required)
+
+==========================
+REQUESTS (Swap Requests)
+==========================
+All endpoints require authentication.
+
+POST   /api/requests
+- Create a swap request
+- Body: { receiver, skill, message? }
+
+GET    /api/requests/incoming
+- Requests received by the authenticated user
+
+GET    /api/requests/outgoing
+- Requests sent by the authenticated user
+
+GET    /api/requests/:id
+- Get a single request (sender or receiver only)
+
+PATCH  /api/requests/:id/accept
+- Accept a pending request (receiver only)
+
+PATCH  /api/requests/:id/reject
+- Reject a pending request (receiver only)
+
+==========================
+CONTACT
+==========================
+
+POST   /api/contact
+- Submit a contact message (public)
+- Body: { full_name, email, subject, message }

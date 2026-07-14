@@ -1,14 +1,20 @@
 const express = require("express");
-
 const router = express.Router();
 
 const {
-  getQuestionsBySkill,
   addQuestion,
-} = require("../controllers/testController");
+  getQuestionsBySkill,
+  updateQuestion,
+  deleteQuestion,
+} = require("../controllers/testcontroller");
+
 
 router.get("/:skillId", getQuestionsBySkill);
 
 router.post("/", addQuestion);
+
+router.put("/:id", updateQuestion);
+
+router.delete("/:id", deleteQuestion);
 
 module.exports = router;

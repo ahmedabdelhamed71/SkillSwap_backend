@@ -1,0 +1,59 @@
+SkillSwap Project Team Members
+
+========================================
+Team Member 1
+========================================
+Name:Omar tarek Omar Fouda
+Frontend Tasks:
+-Login
+-register
+-Discover
+Backend Tasks:
+-login
+-register
+
+========================================
+Team Member 2
+========================================
+Name: Aya saber Fawzy
+Frontend Tasks:
+  - Home
+  - Contact
+  - About
+  - Dark/Light mode
+Backend Tasks:
+  - Get Paginated List of Freelancers
+  - Search Freelancers
+  - Get Freelancer Profile
+  - Get All Requests
+  - Get Request Details
+  - Accept/Reject Request
+  - Contact US Backend
+
+========================================
+Team Member 3
+========================================
+Name:Mohamed wael mohamed
+Frontend Tasks:
+-Messeges
+-
+-
+Backend Tasks:
+-
+-
+-
+
+========================================
+Team Member 4
+========================================
+Name:Kamal ayman
+Frontend Tasks:
+-search skill
+-test selection
+-test page
+-result page
+Backend Tasks:
+-search skill
+-test selection
+-test page
+-Result page
