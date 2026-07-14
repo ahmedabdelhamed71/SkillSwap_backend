@@ -78,5 +78,69 @@ const getUserById = async (req, res) => {
     res.status(500).json({ msg: 'Server error' });
   }
 };
+// Updating user profile
+const updateUser = async (req, res) => {
+  try {
+        // اليوزر يقدر يعدله ف نفسه بس
+    if (req.user._id.toString() !== req.params.id) {
+      return res.status(403).json({
+        msg: "You are not allowed to update this profile",
+      });
+    }
 
-module.exports = { getUsers, getUserById };
+    const {
+      full_name,
+      title,
+      location,
+      bio,
+      email,
+      website,
+    } = req.body;
+        // منع ان الايميل يتكرر مرتين
+
+    if (email) {
+      const existingUser = await User.findOne({
+        email,
+        _id: { $ne: req.user._id },
+      });
+
+      if (existingUser) {
+        return res.status(400).json({
+          msg: "Email already exists",
+        });
+      }
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        full_name,
+        title,
+        location,
+        bio,
+        email,
+        website,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    ).select("-password");
+
+    res.status(200).json({
+      msg: "Profile updated successfully",
+      user: toUserDTO(updatedUser),
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      msg: "Server error",
+    });
+  }
+};
+
+module.exports = {
+  getUsers,
+  getUserById,
+  updateUser,
+};
