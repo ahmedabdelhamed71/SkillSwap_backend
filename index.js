@@ -14,15 +14,15 @@ const resultRoutes = require("./routes/resultRoutes");
 
 const app = express();
 
-app.use(express.json());
-app.use(cookieParser());
-
 app.use(
   cors({
     origin: process.env.CLIENT_URL,
     credentials: true,
   })
 );
+
+app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
@@ -33,14 +33,23 @@ app.use("/api/questions", testRoutes);
 app.use("/api/tests", testRoutes);
 app.use("/api/results", resultRoutes);
 
-const port = process.env.PORT || 3000;
+app.get("/", (req, res) => {
+  res.status(200).json({
+    msg: "SkillSwap",
+  });
+});
+
+const PORT = process.env.PORT || 3000;
 const DB_URL = process.env.DB_URL;
 
 async function connectDB() {
   try {
     await mongoose.connect(DB_URL);
     console.log("DB Connected");
-    return mongoose;
+
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
   } catch (error) {
     console.error("DB Not Connected", error);
     process.exit(1);
@@ -48,13 +57,3 @@ async function connectDB() {
 }
 
 connectDB();
-
-app.get("/", (req, res) => {
-  res.status(200).json({
-    msg: "SkillSwap",
-  });
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
